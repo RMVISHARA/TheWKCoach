@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="shortcut icon" type="image/png" href="./assets/images/favicon.png" />
+    <!-- CDN links -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+    <link href="./assets/css/main.css" rel="stylesheet">
+</head>
+<body>
+<div class="container" style="margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);">
+    <div class="row align-items-center" >
+        <div class="col-3">
+
+        </div>
+        <div class="col-6" style="left: 5%;
+    max-width: 90%;
+    margin-left: 4%;
+    min-height: 319px;
+    background: #fff;
+     font-family: 'Source Sans Pro', sans-serif;
+    box-shadow: 2px 3px 9px 1px #00000059;
+    border-radius: 14px;">
+            <h2 style="    text-align: center;">BatterWEB~Sing In</h2>
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <button type="submit" id="singInUserBtn" class="btn next-left-btn">Sing In</button>
+            </form>
+        </div>
+        <div class="col-3">
+
+        </div>
+    </div>
+    </div>
+<script>
+    $("#singInUserBtn").on("click",(event)=>{
+        event.preventDefault();
+        console.log("singIn");
+        email =  $("#exampleInputEmail1").val();
+        password =  $("#exampleInputPassword1").val();
+        obj = {
+            "email":email,
+            "password":password
+        };
+        jsobObj = JSON.stringify(obj);
+        $.ajax({
+            url: "http://127.0.0.1:5000/loginUser",
+            dataType: 'json', // what to expect back from server
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: "POST",
+            data:jsobObj,
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+            },
+            error: function() {
+                console.log('Something is wrong');
+            },
+            success: function(data) {
+                console.log(data["data"]["result"]["id"]);
+                localStorage.setItem("isLoggedInBatter","true");
+                localStorage.setItem("userIDBatter",data["data"]["result"]["id"]);
+                window.open("index.html","_self");
+            }
+        });
+
+    });
+</script>
+</body>
+</html>

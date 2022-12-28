@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TheWKCoach</title>
+    <link rel="shortcut icon" type="image/png" href="./assets/images/favicon.png" />
+    <!-- CDN links -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Abel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bellota+Text&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://kit.fontawesome.com/84802d24a6.js" crossorigin="anonymous"></script>
+    <!-- Local Links -->
+    <link href="./assets/css/main.css" rel="stylesheet">
+</head>
+<body>
+<h1 style="text-align: center;font-family: 'Source Sans Pro', sans-serif;    font-weight: bold;">Your Statistics</h1>
+<div class="container" style="margin-top: 10%;
+    margin-bottom: 10%;">
+    <h2 style="font-family: 'Source Sans Pro', sans-serif;" id="fdef-heading">Forward Defence</h2>
+    <div class="row">
+
+        <div class="col-md-4">
+            <canvas id="def-stance"></canvas>
+        </div>
+        <div class="col-md-4">
+
+            <canvas id="def-lm"></canvas>
+        </div>
+        <div class="col-md-4">
+            <canvas id="def-exe"></canvas>
+        </div>
+    </div>
+    <h2 style="font-family: 'Source Sans Pro', sans-serif;margin-top: 3rem;" id="fdri-heading">Forward Drive</h2>
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <canvas id="drive-stance"></canvas>
+        </div>
+        <div class="col-md-4">
+            <canvas id="drive-lm"></canvas>
+        </div>
+        <div class="col-md-4">
+            <canvas id="drive-exe"></canvas>
+        </div>
+    </div>
+</div>
+<script>
+    anidata =[70, 30];
+    title = "Stance";
+    chartDivsDef = ["def-stance","def-lm","def-exe"];
+    chartDivsDrice = ["drive-stance","drive-lm","drive-exe"];
+
+    function setAnalytics(chartId,data,title){
+        console.log(chartId,data,title);
+        var ctx = document.getElementById(chartId).getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'pie',
+
+            // The data for our dataset
+            data: {
+                labels: ['Right', 'Wrong'],
+                datasets: [{
+                    backgroundColor: ['rgb(25, 102, 210)','rgb(252, 3, 107)'],
+                    borderColor: ['rgb(25, 102, 210)','rgb(252, 3, 107)'],
+                    data: data
+                }]
+            },
+
+            // Configuration options go here
+            options: {
+                title: {
+                    display: true,
+                    text: title
+                }
+            }
+        });
+
+
+    }
+    function getAnalytics(){
+        console.log("get");
+        $.ajax({
+            url: "http://127.0.0.1:5000/getAnalyticsPercentage",
+            dataType: 'json', // what to expect back from server
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: "POST",
+            data:localStorage.getItem("userIDBatter"),
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+            },
+            error: function() {
+                console.log('Something is wrong');
+            },
+            success: function(data) {
+                console.log(data);
+                // data = JSON.parse(data);
+                $.each(chartDivsDef,(index, value)=>{
+                    anidataz =[];
+                    if (data.data.defence.total > 0){
+                        $("#fdef-heading").html(`Forward Defence - After ${data.data.defence.total} attempts`);
+                        if(value === "def-stance"){
+                            anidataz.push(data.data.defence.stance);
+                            anidataz.push(100 - data.data.defence.stance);
+                            setAnalytics(value,anidataz,"Stance");
+                        }
+                        if(value === "def-lm"){
+                            anidataz.push(data.data.defence["leg-movement"]);
+                            anidataz.push(100 - data.data.defence["leg-movement"]);
+                            setAnalytics(value,anidataz,"Leg-Movement");
+                        }
+                        if(value === "def-exe"){
+                            anidataz.push(data.data.defence.execution);
+                            anidataz.push(100 - data.data.defence.execution);
+                            setAnalytics(value,anidataz,"Execution");
+                        }
+                    }
+                    if (data.data.drive.total > 0){
+                        $("#fdri-heading").html(`Forward Drive - After ${data.data.drive.total} attempts`);
+                        $.each(chartDivsDrice,(index, value)=>{
+                            anidataz =[];
+                            if(value === "drive-stance"){
+                                anidataz.push(data.data.drive.stance);
+                                anidataz.push(100 - data.data.drive.stance);
+                                setAnalytics(value,anidataz,"Stance");
+                            }
+                            if(value === "drive-lm"){
+                                anidataz.push(data.data.drive["leg-movement"]);
+                                anidataz.push(100 - data.data.drive["leg-movement"]);
+                                setAnalytics(value,anidataz,"Leg-Movement");
+                            }
+                            if(value === "drive-exe"){
+                                anidataz.push(data.data.drive.execution);
+                                anidataz.push(100 - data.data.drive.execution);
+                                setAnalytics(value,anidataz,"Execution");
+                            }
+
+
+                        });
+                    }
+
+
+                });
+
+            }
+        });
+
+    }
+    getAnalytics();
+</script>
+</body>
+</html>

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TheWKCoach</title>
+    <link rel="shortcut icon" type="image/png" href="./static/images/favicon.png" />
+    <!-- CDN links -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Abel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bellota+Text&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"
+        integrity="sha256-nZaxPHA2uAaquixjSDX19TmIlbRNCOrf5HO1oHl5p70=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/84802d24a6.js" crossorigin="anonymous"></script>
+    <!-- Local Links -->
+    <link href="./static/css/main.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="row">
+<!--        <img class="batter-logo" src="./static/images/batter.png">-->
+<!--        <i class="fab fa-battle-net batter-logo"></i>-->
+        <h1 class="heding-main">Wicket Keeping Technique Analyser</h1>
+        <div style="margin-left: 43%">
+            <button type="button" id="singIn-view-btn" class="btn next-left-btn" style="position: relative;border: 1px solid;margin-top: 6px;"><a href="/loginUser">Sign In</a></button>
+            <button type="button" id="logout-view-btn" class="btn next-left-btn" style="position: relative;border: 1px solid;margin-top: 6px;"><a>Logout</a></button>
+            <button type="button" id="analytics-view-btn" class="btn next-left-btn" style="position: relative;border: 1px solid;margin-top: 6px;margin-right: 3px"><a>View Analytics</a></button>
+        </div>
+        <!--        <button type="button" class="heding-button" data-toggle="modal" data-target="#exampleModalCenter"><i-->
+<!--                class="fas fa-info"></i></button>-->
+    </div>
+    <div class="row">
+    <div class="container-fluid two-div-main">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 left-div">
+<!--                <div class="navigation">-->
+<!--                    <span style="position: absolute;font-size: 74px;top: -1%;left: 0%;width: 100%;color: #102c36">-->
+<!--                        <i class="fab fa-adn" id="stage1-progress-icon" style="margin-left: 6%;border-radius: 10px;padding: 4px;color: white; background-image: linear-gradient(to right, #cc00ff , #ff008d);box-shadow: 2px 2px 8px #05313f;"></i>-->
+<!--                        <i class="fab fa-adn" id="stage2-progress-icon" style="margin-left: 20%; background: #ff8c4a;"></i>-->
+<!--                        <i class="fab fa-adn" id="stage3-progress-icon"  style="margin-left: 20%; background: #ff8c4a;"></i>-->
+<!--                        <i class="fab fa-adn" id="stage4-progress-icon"  style="margin-left: 20%; background: #ff8c4a;"></i>-->
+<!--                    </span>-->
+
+<!--                    <div class="progress" style="height: 5px;margin-top: 4%;margin-left: 7%;margin-right: 7%;background-image: linear-gradient(to right, #cc00ff , #ff008d);">-->
+<!--                        <div class="progress-bar" role="progressbar" style="width: 0%;background-color: #effbe9;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <div id="stage0" style="position: relative;">
+                    <h2 class="stage-heading" style="">TheWKCoach</h2>
+                    <div class="row">
+                        <div class="col-5" style="padding: 10%;">
+                            <div class="card" style="width: 18rem;font-family: 'Source Sans Pro', sans-serif;font-weight: bold;box-shadow: 2px 3px 6px 1px #00000026">
+                                <div class="card-header" style="background-color: rgb(231, 240, 254);">
+                                    Technique
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Technique Type
+                                        <button class="btn btn-secondary btn-sm dropdown-toggle drop-down-strokes" id="stroke-type-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">None</button>
+                                        <div class="dropdown-menu" id="stroke-drop-down-menu">
+                                            <a class="dropdown-item" href="#">Stance</a>
+                                            <a class="dropdown-item" href="#">Execution</a>
+                                        </div>
+                                    </li>
+<!--                                    <li class="list-group-item">How well you play it-->
+<!--                                        <button class="btn btn-secondary btn-sm dropdown-toggle drop-down-strokes" id="stroke-level-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">None</button>-->
+<!--                                        <div class="dropdown-menu" id="stroke-level&#45;&#45;drop-down-menu">-->
+<!--                                            <a class="dropdown-item" href="#">Beginner</a>-->
+<!--                                            <a class="dropdown-item" href="#">Intermediate</a>-->
+<!--                                            <a class="dropdown-item" href="#">Expert</a>-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div id="left-content-div0" style="position: relative;text-align: center;">
+                                <iframe id="iframe-def" width="520" height="400" style="display: none;margin-left: 16%;border-radius: 8px;box-shadow: 5px 6px 6px 3px #00000026;"
+                                        src="https://www.youtube.com/embed/y9FU53v1M4Q">
+                                </iframe>
+                                <iframe id="iframe-drive" width="520" height="400" style="display: none;margin-left: 16%;border-radius: 8px;box-shadow: 5px 6px 6px 3px #00000026;" >
+                                    <img src="./static/images/batter.png">
+                                </iframe>
+                             
+                                
+<!--                 drive -               https://www.youtube.com/embed/F8W24CfnfGE-->
+                                                                <img src="./static/images/bg.JPG" id="starting-gif" class="left-gif">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="dropdown-divider"></div>
+                </div>
+
+                <div id="stage1" style="display: none">
+                    <h2 class="stage-heading" style="margin-top: 3%">Let's select your video</h2>
+                    <div id="left-content-div" style="position: relative;text-align: center;">
+                        <img src="./static/images/upload.jpg" class="left-gif">
+                    </div>
+                    <button type="button" class="btn btn-lg btn-block input-video-btn">
+                        <label class="custom-file-upload">
+                            <input id="videoInput" type="file" name="files[]" accept="video/*"/>
+                            <i class="fas fa-file-upload"></i> Upload Video
+                        </label>
+                    </button>
+                    <div class="dropdown-divider"></div>
+                </div>
+                <div id="stage2" style="display: none">
+                    <h2 class="stage-heading" style="margin-top: 4%;">Let's look at your Technique</h2>
+                    <div id="left-content-div2" style="position: relative;text-align: center;">
+                        <table style="margin-left: 0.5%;border-collapse: separate; border-spacing: 15px;font-family: 'Source Sans Pro', sans-serif;font-weight: bold; width:100%;">
+                            <tr>
+                                <td style="text-align: center;">Stance</td>
+                                <td style="text-align: center;">Execution</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">
+                                    <div class="spinner-firststage" style="margin-left:14%;">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+
+                                    <img src="./static/images/frame11.jpg" class="frames-captured" id="stance-frame-stage2" style="display: none; margin-left:14%;" >
+                                </td>
+                                <td style="text-align: center;">
+                                    <div class="spinner-firststage"style="margin-left:14%;">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+
+                                    <img src="./static/images/frame11.jpg" class="frames-captured" id="exe-frame-stage2" style="display: none; margin-left:14%;" >
+                                </td>
+                                <!-- <td>
+                                    <div class="spinner-firststage">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                    <img src="./static/images/frame11.jpg" class="frames-captured" id="exe-frame-stage2" style="display: none">
+                                </td> -->
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                </div>
+                <div id="stage3" style="display: none">
+                    <h2 class="stage-heading" style="margin-top: 4%;">Let's analyse your Technique </h2>
+                    <div id="left-content-div3" style="position: relative;text-align: center;">
+                        <table style="margin-left: 16%;margin-right: 16%;font-family: 'Source Sans Pro', sans-serif;font-weight: bold; width:100%;">
+                            <tr>
+                                <td>
+                                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;float: left;margin-right: 3%;height: 250px;width: 279px;">
+                                        <div class="card-header" style="font-weight: bold;font-size: x-large;text-align: center;">Stance</div>
+                                        <div class="card-body">
+<!--                                            <h5 class="card-title">def</h5>-->
+                                            <div class="spinner-grow stage3-spinner" style="color: #ffffff;margin-left:14%;"></div>
+                                            <p class="card-text" id="stance-analyse-txt"></p>
+                                        </div>
+                                    </div>
+                                </td>
+                               
+                                <td>
+                                    <div class="card text-white bg-primary mb-3" style="max-width: 18rem;margin-right: 3%;height: 250px;width: 279px;">
+                                        <div class="card-header" style="font-weight: bold;font-size: x-large;">Execution</div>
+                                        <div class="card-body">
+                                            <div class="spinner-grow stage3-spinner" style="color: #ffffff; margin-left:14%;"></div>
+                                            <p class="card-text" id="exe-analyse-txt"></p>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <button type="button" id="saveAnalyzedStrokeBtn" style="display: none" class="btn btn-lg btn-block input-video-btn">
+                            <label class="custom-file-upload">
+                                <i class="fas fa-save"></i> Save the analyzed stroke?
+                            </label>
+                        </button>
+                        <button type="button" id="startNewProject" style="display: none" class="btn btn-lg btn-block input-video-btn">
+                            <label class="custom-file-upload">
+                                <i class="fas fa-arrow-right"></i> New video analysis
+                            </label>
+                        </button>
+                        <div>
+                            <button type="button" style="display: none" id="loggedIn-view-analysis-page" class="btn next-left-btn"><a href="/viewAnalitics">View your Statistics&nbsp;<i
+                                    class="fas fa-arrow-right"></i></a></button>
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                </div>
+                <div id="stage4" style="display: none">
+                    <h2 class="stage-heading" style="margin-top: 4%;">Final Stroke summary</h2>
+                    <div id="left-content-div4" style="position: relative;text-align: center;">
+                        <img src="./afterEffects/Vanilla-1s-288px.gif" class="left-gif">
+                    </div>
+                    <div class="dropdown-divider"></div>
+                </div>
+                <!-- <video class="video-input" width="680" controls>
+                    <source src="./input-video/drive.mp4" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                  </video> -->
+                <div>
+                    <button type="button" id="next-step-btn-frames" class="btn next-left-btn">Next Step&nbsp;<i
+                            class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+<!--            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 right-div">-->
+<!--                <canvas id="myChart" class="main-summary-canvas" width="400" height="400"></canvas>-->
+<!--                <div>-->
+<!--                    <button type="button" class="btn next-right-btn">More Analytics&nbsp;<i-->
+<!--                            class="fas fa-arrow-right"></i></button>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+    </div>
+    </div>
+    <div style="text-align: center;margin-top: 41px;position: relative;">
+       
+    </div>
+    <!-- about modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">About TheWKCoach</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                   
+                </div>
+                <div class="modal-footer" style="text-align: center;">
+                    All rights reserved
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkState(){
+
+            if (localStorage.getItem("isLoggedInBatter") === "true"){
+                console.log("user logged In");
+                $("#singIn-view-btn").css("display","none");
+                // $("#saveAnalyzedStrokeBtn").css("display","block");
+
+            }else{
+                $("#saveAnalyzedStrokeBtn").css("display","none");
+                $("#singIn-view-btn").css("display","block");
+                $("#logout-view-btn").css("display","none");
+                $("#analytics-view-btn").css("display","none");
+
+            }
+        }
+        // location.reload();
+        checkState();
+
+        let initialProgressVal = 0;
+        let initialStage = 0;
+        let STROKEStages = {};
+        let analyticsDataToBeSaved = {};
+        var form_data = new FormData();
+        // $('#stroke-drop-down-menu a').on('click', function(event){
+        //     console.log("event",$(this).text());
+        //     $("#stroke-type-btn").html($(this).text());
+        //     analyticsDataToBeSaved["stroke"] = $(this).text();
+        //     if (analyticsDataToBeSaved["stroke"] === 'Forward Defence'){
+        //         $("#iframe-def").css("display","block");
+        //         $("#iframe-drive").css("display","none");
+        //     //    starting-gif
+        //         $("#starting-gif").css("display","none");
+        //     }else{
+        //         $("#starting-gif").css("display","none");
+        //         $("#iframe-def").css("display","none");
+        //         $("#iframe-drive").css("display","block");
+        //     }
+        //     console.log(analyticsDataToBeSaved);
+        //     // $('#datebox').val($(this).text());
+        // });
+        $("#analytics-view-btn").on("click",()=>{
+            $("#next-step-btn-frames").css("display","none");
+            $('#videoInput').val("");
+            $('#left-content-div').empty();
+            $('#left-content-div').append(`<img src="./afterEffects/Vanilla-1s-288px.gif" class="left-gif">`);
+            window.open("analytics.html","_self");
+        });
+        $('#stroke-level--drop-down-menu a').on('click', function(event){
+            console.log("event",$(this).text());
+            $("#stroke-level-btn").html($(this).text());
+            // $('#datebox').val($(this).text());
+        });
+
+        $("#logout-view-btn").on("click",()=>{
+            console.log("logout");
+            localStorage.clear();
+            location.reload();
+        });
+
+
+        $("#next-step-btn-frames").on("click",increaseProgress);
+        function increaseProgress() {
+
+            console.log("Increased");
+        //    progress-bar
+            initialProgressVal = initialProgressVal + 35;
+            initialStage +=1;
+            if (initialStage === 1){
+                $("#next-step-btn-frames").css("display","none");
+                changeStageDom(initialStage);
+            }
+            if (initialStage === 2){
+                console.log("sending Video File");
+                $("#next-step-btn-frames").css("display","none");
+                $.ajax({
+                    url: "http://127.0.0.1:5000/videoUpload",
+                    dataType: 'json', // what to expect back from server
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    type: "POST",
+                    error: function() {
+                        console.log('Something is wrong');
+                    },
+                    success: function(data) {
+                        console.log(data['data']);
+                        changeStageDom(initialStage);
+                        readFrames(data['data']);
+
+                        // localStorage.setItem("stage1Path",data['data']['path']);
+                        // window.location.href = "frames.html";
+                    }
+                });
+            }
+            if (initialStage === 3){
+                changeStageDom(initialStage);
+
+
+
+                getAnalysis();
+            }
+            // $(".progress-bar").css("width", `${initialProgressVal}%`);
+            // setInterval(function(){
+            //     if (initialProgressVal === 35){
+            //         $("#stage2-progress-icon").css({"border-radius": "10px","color": "white", "background-image": "linear-gradient(to right, #cc00ff , #ff008d)","padding": "4px","box-shadow": "2px 2px 8px #05313f"});
+            //     }
+            //     if (initialProgressVal === 70){
+            //         $("#stage3-progress-icon").css({"border-radius": "10px","color": "white", "background-image": "linear-gradient(to right, #cc00ff , #ff008d)","padding": "4px","box-shadow": "2px 2px 8px #05313f"});
+            //     }
+            //     if (initialProgressVal === 105){
+            //         $("#stage4-progress-icon").css({"border-radius": "10px","color": "white", "background-image": "linear-gradient(to right, #cc00ff , #ff008d)","padding": "4px","box-shadow": "2px 2px 8px #05313f"});
+            //     }
+
+            // }, 600);
+
+            }
+        function changeStageDom(stageNumber) {
+                console.log("Moving Stage",stageNumber);
+                // $(`#stage${stageNumber-1}`).css("display", "none");
+                $(`#stage${stageNumber}`).css("display", "block");
+            }
+        function readFrames(fileName) {
+            console.log("Reading frames");
+            // $.get("http://127.0.0.1:8080/frames", function(data, status){
+            //     // alert("Data: " + data + "\nStatus: " + status);
+            //     console.log("data ",data," status",status);
+            // });
+
+            $.ajax({
+            url: "http://127.0.0.1:5000/frame",
+            dataType: 'json', // what to expect back from server
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: "POST",
+            data: fileName,
+            headers: {
+                       'Access-Control-Allow-Origin': '*',
+                       },
+                    error: function() {
+                        console.log('Something is wrong');
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        classifyFrames();
+                    }
+        });
+        }
+        function classifyFrames() {
+            console.log("classifying frames...");
+            $.ajax({
+                url: "http://127.0.0.1:5000/classifyFrames",
+                dataType: 'json', // what to expect back from server
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: "GET",
+                error: function() {
+                    console.log('Something is wrong');
+                },
+                success: function(data) {
+                    console.log(data['data']);
+                    var obj = JSON.parse(data['data']);
+                    console.log("final dataset",obj)
+                    console.log("Here's the JSON",obj['baseUrl'],obj['stance'][0]); 
+                    //Here's the JSON static/ClassifiedFrames frame1
+                    var middleStance = obj['stance'][Math.floor(obj['stance'].length / 2)];
+                   
+                    var lastExe = obj['execution'][obj['execution'].length-1];
+                    STROKEStages = {
+                        "stance": `${obj['baseUrl']}/stance/${middleStance}.jpg`,
+                       
+                        "execution": `${obj['baseUrl']}/execution/${lastExe}.jpg`,
+                    };
+                    console.log("stages",STROKEStages);
+                    // console.log("middleStance",middleStance,"middleLM",middleLM,"middleExe",lastExe);
+                    $(".spinner-firststage").css("display","none");
+                    $("#stance-frame-stage2").attr("src",`${obj['baseUrl']}/stance/${middleStance}.jpg`);
+                    $("#stance-frame-stage2").css("display","block");
+                    $("#exe-frame-stage2").attr("src",`${obj['baseUrl']}/execution/${lastExe}.jpg`);
+                    $("#exe-frame-stage2").css("display","block");
+                    $("#next-step-btn-frames").css("display","block");
+                    // localStorage.setItem("stage1Path",data['data']['path']);
+                    // window.location.href = "frames.html";
+                }
+            });
+
+        }
+
+        function getAnalysis() {
+            $("#next-step-btn-frames").css("display","none");
+            console.log("Get the analysis of the frames ",STROKEStages);
+            obj = JSON.stringify(STROKEStages);
+            $.ajax({
+                url: "http://127.0.0.1:5000/getAnalysis",
+                dataType: 'json', // what to expect back from server
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: "POST",
+                data:obj,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                },
+                error: function() {
+                    console.log('Something is wrong');
+                },
+                success: function(data) {
+                    console.log(data);
+                    displayAnalysisData(data)
+                }
+            });
+
+        }
+
+        function displayAnalysisData(analyzedData) {
+            $(".spinner-grow.stage3-spinner").css("display","none");
+            // analyzedData = {data: {"stance": "close", "leg-movement": "fine", "execution": "back-leg-bent"}, status: 200};
+            console.log("displayAnalysisData displayAnalysisData",analyzedData);
+            dataJson = JSON.parse(analyzedData['data']);
+            //stance
+            if (dataJson['stance'] === "correct"){
+                analyticsDataToBeSaved["stance"] = "1";
+                $("#stance-analyse-txt").text("Your wicket keeping stance is upto the standard technique in this video.");
+            }else{
+                analyticsDataToBeSaved["stance"] = "0";
+                $("#stance-analyse-txt").text("You have done a mistake, which is not going to the full crouching position while standing on your toes." +
+                    "This will decrease your interception time of the ball.");
+            }
+           
+            //Execution
+            if (dataJson['execution'] === "correct"){
+                analyticsDataToBeSaved["execution"] = "1";
+                $("#exe-analyse-txt").text("You have done a mistake, which is not keeping your head position in line with tha ball." +
+                    "It will lead to a body imbalance and you may miss hit the ball since you don't see the ball well enough until it hits the gloves");
+            }else{
+                analyticsDataToBeSaved["execution"] = "0";
+                $("#exe-analyse-txt").text("Your final execution is upto the standard technique in this video.");
+            }
+
+            if (localStorage.getItem("isLoggedInBatter") === "true"){
+                //    view analytics
+                $("#loggedIn-view-analysis-page").css("display","block");
+                $("#saveAnalyzedStrokeBtn").css("display","block");
+                $("#startNewProject").css("display","block");
+            }else{
+                $("#loggedIn-view-analysis-page").css("display","none");
+                $("#startNewProject").css("display","block");
+            }
+            $("#startNewProject").on("click",()=>{
+                location.reload();
+            });
+         
+
+            $("#saveAnalyzedStrokeBtn").on("click",()=>{
+                console.log("save");
+                analyticsDataToBeSaved["id"] = localStorage.getItem("userIDBatter");
+                obj = JSON.stringify(analyticsDataToBeSaved);
+                $.ajax({
+                    url: "http://127.0.0.1:5000/saveStroke",
+                    dataType: 'json', // what to expect back from server
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    type: "POST",
+                    data:obj,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                    },
+                    error: function() {
+                        console.log('Something is wrong');
+                    },
+                    success: function(data) {
+                        console.log(data);
+                    }
+                });
+            });
+        }
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    // console.log("URL: ",e.target.result);
+                    let content = `<button type="button" id="remove-video-btn-left" class="btn remove-video-left-btn">Remove&nbsp;<i class="fas fa-times"></i></button><video class="video-input" height="400" width="680" controls>
+                    <source src="${e.target.result}" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                  </video>`;
+
+                    // $('#blah').attr('src', e.target.result);
+                    $('#left-content-div').empty();
+                    $('#left-content-div').append(content);
+                    const file = input.files[0];
+
+                    console.log("file new", file);
+                    form_data.append("files[]",file);
+                    // videoFile = new FormData();
+                    // videoFile.append('file', file);
+                    // Create file metadata including the content type
+                    $('#remove-video-btn-left').on("click", () => {
+                        console.log("removed");
+                        $("#next-step-btn-frames").css("display","none");
+                        $('#videoInput').val("");
+                        $('#left-content-div').empty();
+                        $('#left-content-div').append(`<img src="./afterEffects/Vanilla-1s-288px.gif" class="left-gif">`);
+                    });
+
+
+
+
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+
+        }
+
+
+        $("#videoInput").change(function () {
+            console.log("here comes the boom");
+            readURL(this);
+            $("#next-step-btn-frames").css("display","block");
+        });
+        // var ctx = document.getElementById('myChart');
+        // var myChart = new Chart(ctx, {
+        //     type: 'radar',
+        //     data: {
+        //         labels: ['Stance', 'Leg Movement', 'Execution'],
+        //         datasets: [{
+        //             label: 'Stroke Summary',
+        //             data: [80, 90, 20],
+        //             backgroundColor: 'rgba(255, 99, 71, 0.4)',
+        //             borderColor: 'rgba(255, 99, 71, 1)',
+        //             borderWidth: 1
+        //         }]
+        //     },
+        //     options: {
+        //         scale: {
+        //             gridLines: {
+        //                 color: 'Gray'
+        //             },
+        //             angleLines: {
+        //                 display: true,
+        //                 color: 'Gray'
+        //             },
+        //             ticks: {
+        //                 fontColor: "rgba(100, 40, 71)",
+        //                 suggestedMin: 0,
+        //                 suggestedMax: 100
+        //             },
+        //             pointLabels: {
+        //                 // callback: function(value, index, values) {
+        //                 //     return '$' + value;
+        //                 // }
+        //                 fontColor: "rgba(255, 99, 71)",
+        //                 fontSize: 13
+        //             }
+        //         },
+        //         legend: {
+        //             display: true,
+        //             labels: {
+        //                 fontColor: 'rgb(255, 255, 255)',
+        //                 fontSize: 20
+        //             }
+        //         }
+        //     }
+        // });
+
+        // displayAnalysisData();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+body{
+margin: 8px;
+    background-color: #ede8e8;
+}
+.batter-logo{
+border-radius: 20px;
+width: 100px;
+height: 100px;
+float: left;
+margin-left: 15px;
+}
+
+.stage-heading{
+    position: relative;
+    margin-top: 2%;
+    text-align: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #05313f;
+    /*text-decoration: underline;*/
+    font-weight: bold;
+    font-size: xx-large;
+    /*background-color: #fbfbfb;*/
+    width: auto;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 8px;
+}
+.dropdown-divider{
+    border-top: 1px solid #1967d27d !important;
+    margin-top: 2% !important;
+}
+
+.heding-main{
+    color: #1967D2;
+    float: left;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    position: relative;
+    left: 34%;
+    /*margin-top: 2%;*/
+}
+
+.heding-button{
+    font-weight: bold;
+    width: 65px;
+    height: 65px;
+    font-size: 27px;
+    font-family: 'Ubuntu';
+    position: relative;
+    left: 57%;
+    color: #ff7020e0;
+    margin-top: 2%;
+    border-radius: 12px;
+    border: none;
+    background-color: #12333f;
+    /* background: linear-gradient(90deg, rgba(236,89,0,1) 0%, rgba(253,113,29,1) 50%, rgba(247,145,1,1) 100%);  */
+}
+
+.heding-button:hover{
+    box-shadow: 6px 4px 10px 0px rgba(45, 54, 52, 0.6);
+
+}
+
+.spinner-firststage{
+    position: relative;
+    width: 400px;
+}
+
+.left-div{
+    left: 5%;
+    max-width: 90%;
+    min-height: 500px;
+    background: #fff;
+    box-shadow: 2px 3px 9px 1px #00000059;
+    border-radius: 14px;
+    /*border: 2px solid #d36a3a;*/
+}
+.right-div{
+    min-height: 500px;
+    background: #14333f;
+}
+ .two-div-main{
+    position: relative;
+    top: 25px;
+ }
+
+ .video-input,.video-output{
+    margin-top: 27px;
+     position: relative;
+     left: 4%;
+    /* position: absolute; */
+    /* left: 14%; */
+    /* top: 23%; */
+ }
+
+ .input-video-btn{
+     position: relative;
+     margin-left: 34%;
+     margin-right: 34%;
+     width: 30%;
+    background-color: #E8F0FE;
+    color: #1967D2;
+    margin-top: 15px;
+    /* margin-bottom: 7px; */
+ }
+ .input-video-btn:hover{
+    background-color: #D2E3FC;
+    color: #1967D2;
+    box-shadow: 6px 4px 10px 0px rgba(45, 54, 52, 0.6);
+ }
+ .next-left-btn{
+     border: none;
+    background-color: #E8F0FE;
+    color: #1967D2;
+    margin-top: 45px;
+    margin-bottom: 10px;
+    float: right;
+ }
+ .next-left-btn:hover{
+    background-color: #D2E3FC;
+    color: #1967D2;
+    box-shadow: 6px 4px 10px 0px rgba(45, 54, 52, 0.6);
+ }
+
+ .main-summary-canvas{
+    display: block;
+    height: 542px !important;
+    width: 673px !important;
+    margin-top: 35px;
+ }
+
+ .drop-down-strokes{
+     float: right;
+     background-color: #E8F0FE;
+     color: #1967D2;
+     border: 0;
+     outline: 0;
+ }
+.drop-down-strokes:hover{
+    float: right;
+    background-color: #E8F0FE !important;
+    color: #1967D2 !important;
+    border: 0 !important;
+    outline: 0 !important;
+}
+.drop-down-strokes:focus{
+    float: right;
+    background-color: #E8F0FE !important;
+    color: #1967D2 !important;
+    border: 0 !important;
+    outline: 0 !important;
+}
+ .next-right-btn{
+    background-color: #ea7840;
+    color: #12333f;
+    margin-top: 6px;
+    float: right;
+    border: none;
+ }
+
+ .next-right-btn:hover{
+    background-color: #D2E3FC;
+    /*color: #12333f;*/
+    box-shadow: 6px 4px 10px 0px rgba(175, 131, 94, 0.6);
+
+ }
+
+ .left-gif{
+    position: relative;
+    margin-top: 2%;
+    width: 584px;
+    border-radius: 10px;
+    height: 372px;
+     box-shadow: 2px 3px 8px 1px #00000063;
+    /*border: 13px solid #12333f5c;*/
+ }
+
+.frames-captured{
+    position: relative;
+    margin-top: 2%;
+    border-radius: 10px;
+    box-shadow: 2px 3px 8px 1px #00000063;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    /*border: 13px solid #12333f5c;*/
+}
+
+
+ input[type="file"] {
+   display: none;
+}
+
+.custom-file-upload {
+   display: inline-block;
+   width: 100%;
+   cursor: pointer;
+}
+
+.remove-video-left-btn{
+    position: relative;
+    right: 14%;
+   background-color: #dfd4ce;
+   color: #12333f;
+   margin-top: 22px;
+   float: right;
+   border: none;
+}
+
+.remove-video-left-btn:hover{
+   background-color: #ffffff;
+   color: #ff003b;
+   box-shadow: 6px 4px 10px 0px rgba(11, 11, 10, 0.6);
+
+}
