@@ -1,2 +1,2 @@
 # TheWKCoach
-Wicket keeping technique analysis tool
+Wicket Keeping Technique Analysis Tool
