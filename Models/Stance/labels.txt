@@ -1,0 +1,2 @@
+0 Correct stance
+1 Incorrect stance

@@ -1,0 +1,2 @@
+0 Stance
+1 Execution
